@@ -8,6 +8,8 @@ def numProvincesDisjoint(mat):
       if mat[u][v]==1:
         ds.unionByRank(u,v)
   
+  return len(set(ds.parent[i] for i in range(V)))
+  # OR
   cnt = 0
   for i in range(V):
     #if it is the parent of itself then its the ultimate parent/boss of the component

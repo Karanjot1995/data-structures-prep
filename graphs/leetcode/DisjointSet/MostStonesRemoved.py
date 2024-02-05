@@ -49,9 +49,7 @@ def removeStones(stones):
   for node in stoneNodes:
     if ds.findUParent(node) == node:
       cnt+=1
-
   return n - cnt
-
 
 # stones = [[0,0],[0,1],[1,0],[1,2],[2,1],[2,2]]
 stones = [[0,0],[0,2],[1,3],[3,0],[3,2],[4,3]]

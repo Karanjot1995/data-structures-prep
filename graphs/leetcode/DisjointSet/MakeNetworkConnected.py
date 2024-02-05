@@ -1,5 +1,5 @@
 
-from Templates.DisjointSet import DisjointSet
+from DisjointSet import DisjointSet
 
 def makeConnected(n: int, connections):
   ds = DisjointSet(n)
