@@ -1,25 +1,29 @@
 ##########         Course Schedule      ############
 
+
+#Topological Sort (Cycle detection) 
+
 class Solution:
 #Course schedule 1
-    def dfsCheck(self,graph, curr, vis):
-      vis[curr] = 1
-      for neighbor in graph[curr]:
-        if vis[neighbor]==-1:
-          if self.dfsCheck(graph, neighbor, vis) == True: return True
-        elif vis[neighbor]==1: return True
-      vis[curr] = 0
-      return False
-
+#detect cycle
     def canFinish(self, numCourses: int, prerequisites):
       graph=[[] for _ in range(numCourses)]
       vis=[-1]*numCourses
       for i,j in prerequisites:
         graph[j].append(i)
+
+      def dfsCheck(curr):
+        vis[curr] = 1
+        for neighbor in graph[curr]:
+          if vis[neighbor]==-1:
+            if dfsCheck(neighbor) == True: return True
+          elif vis[neighbor]==1: return True
+        vis[curr] = 0
+        return False
       
       for node in range(numCourses):
         if vis[node]==-1:
-          if self.dfsCheck(graph, node, vis) == True: return False
+          if dfsCheck(node) == True: return False
 
       return True
     
@@ -61,9 +65,9 @@ class Solution:
 
       q = []
       topo_sort = []
-      for i in range(len(in_degree)):
-        if in_degree[i]==0:
-          q.append(i)
+      for node in range(numCourses):
+        if in_degree[node]==0:
+          q.append(node)
 
       while q:
         curr = q.pop(0)

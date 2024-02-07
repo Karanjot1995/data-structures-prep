@@ -1,0 +1,15 @@
+BFS
+DFS
+No of provinces
+Number of islands
+Flood Fill
+Rotten Oranges
+Cycle in Undirected Graph (BFS DFS)
+Distance of nearest cell having 1/0
+Surrounded Regions
+Number of enclaves
+Bipartile Graph
+Detect Cycle in Directed Graph (BFS DFS)
+Eventual Safe nodes
+Kahns algo/ Topo sort
+

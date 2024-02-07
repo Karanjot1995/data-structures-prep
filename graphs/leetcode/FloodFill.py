@@ -36,3 +36,11 @@ def floodFillDFS(image, sr , sc , color):
     image[sr][sc] = color
     return image
 
+
+
+# input: image = [[1,1,1],
+#                 [1,1,0],
+#                 [1,0,1]] , sr=1, sc=1, color = 2
+# output: [[2,2,2],
+#          [2,2,0],
+#          [2,0,1]]
