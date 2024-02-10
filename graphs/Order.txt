@@ -8,6 +8,7 @@ Cycle in Undirected Graph (BFS DFS)
 Distance of nearest cell having 1/0
 Surrounded Regions
 Number of enclaves
+No of distinct islands
 Bipartile Graph
 Detect Cycle in Directed Graph (BFS DFS)
 Eventual Safe nodes

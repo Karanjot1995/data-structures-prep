@@ -6,6 +6,7 @@ def countDistinctIslands(grid):
   #take initial row and column in dfs to be subtracted
   def dfs(row,col, island, row0, col0):
     island.append([row-row0,col-col0])
+    print(island)
     visited[row][col] = 1
     directions = [[1,0], [-1,0], [0,1], [0,-1]]
 

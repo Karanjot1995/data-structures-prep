@@ -26,8 +26,8 @@ def distance(grid):
 
   return distances
 
-print(distance([[0,0,0],[0,1,0],[1,0,1]]))
-# print(distance([[0, 0, 0, 1],[0, 0, 1, 1],[0, 1, 1, 0]]))
+# print(distance([[0,0,0],[0,1,0],[1,0,1]]))
+print(distance([[0, 0, 0, 1],[0, 0, 1, 1],[0, 1, 1, 0]]))
 
 # input: grid = [[0,0,0],
 #                [0,1,0],
