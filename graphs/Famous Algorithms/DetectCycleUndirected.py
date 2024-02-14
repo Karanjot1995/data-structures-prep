@@ -23,12 +23,18 @@ class Graph(Graph):
   
 
   def isCyclicDFS(self):
+    # edges = [[0,1],[0,2],[0,3],[1,4]]
+    # n = 5
+    # adj = {i:[] for i in range(n)}
+    # for u,v in edges:
+    #   adj[u].append(v)
+    #   adj[v].append(u)
+
     start = 0
     adj = self.adj
     vis = [0]*len(adj)
 
-    vis[start] = 1
-    q = [[start,-1]]
+    # vis[start] = 1
 
     def dfs(u,parent):
       vis[u]= 1
