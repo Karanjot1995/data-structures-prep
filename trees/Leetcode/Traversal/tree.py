@@ -22,6 +22,25 @@ class BinaryTree:
       if curr.right: q.append(curr.right)
     return order
   
+  def levelOrder(self):
+    order = []
+    current = self.root
+    q = [current]
+    while q:
+      level = []
+      for i in range(len(q)):
+        popped = q.pop(0)
+        level.append(popped.val)
+        if popped.left:
+          q.append(popped.left)
+        if popped.right:
+          q.append(popped.right)
+      order.append(level)
+    return order
+  
+
+   
+  
   def dfsPre(self,root):
     if root == None:
       return
@@ -141,7 +160,95 @@ class BinaryTree:
       
 
     return order  
-     
+  
+
+  def zigZag(self):
+    order = []
+    current = self.root
+    q = [current]
+    leftToright = True
+    while q:
+      n = len(q)
+      level = [0]*n
+      for i in range(n):
+        popped = q.pop(0)
+
+        if leftToright: level[i] = popped.val
+        else: level[n-1-i] = popped.val
+
+        if popped.left:
+          q.append(popped.left)
+        if popped.right:
+          q.append(popped.right)
+      leftToright = not leftToright
+      order.append(level)
+
+    return order
+  
+  def boundaryTraversal(self):
+    root = self.root
+    arr = []
+    def leftTraverse(root):
+      if not root.left and not root.right:
+        return
+      arr.append(root.val)
+      if root.left: leftTraverse(root.left)
+      elif root.right: leftTraverse(root.right)
+    leftTraverse(root)
+
+    def leafTraverse(root):
+      if not root.left and not root.right: 
+        arr.append(root.val)
+      if root.left: leafTraverse(root.left)
+      if root.right: leafTraverse(root.right)
+    leafTraverse(root)
+
+    right = []
+    def rightTraverse(root):
+      if not root.left and not root.right:
+        return
+      right.append(root.val)
+      # arr.append(root.val)
+      if root.right: rightTraverse(root.right)
+      elif root.left: rightTraverse(root.left)
+    rightTraverse(root.right)
+    
+    for i in range(len(right)-1,-1,-1):
+      arr.append(right[i])
+    # arr+=right
+    return arr
+  
+  def verticalTraversal(self):
+    root = self.root
+    dict = {}
+
+    def traverse(root,x,y):
+      if not root: return
+      if x not in dict: dict[x] = []
+      dict[x].append([y,root.val])
+      traverse(root.left, x-1, y+1)
+      traverse(root.right, x+1, y+1)
+       
+    traverse(root,0,0)
+
+    def levelOrder(current, x,y):
+      q = [[current,0,0]]
+      while q:
+        popped,x,y= q.pop(0)
+        if x not in dict: dict[x] = []
+        dict[x].append([y,popped.val])
+        if popped.left: q.append([popped.left,x-1,y+1])
+        if popped.right: q.append([popped.right,x+1,y+1])
+
+    # levelOrder(root,0,0)
+
+    res = []
+    for x in sorted(dict.keys()):
+      lvl = []
+      for node in sorted(dict[x]):
+        lvl.append(node[1])
+      res.append(lvl)
+    return res     
       
     
 
@@ -164,8 +271,8 @@ class BinaryTree:
 #         2        3
 #       /   \     /  \
 #      4     5   6    7
-#    /  \
-#   8     9
+#           /  \
+#          8     9
 
 tree = BinaryTree(1)
 tree.root.left = Node(2)
@@ -174,5 +281,20 @@ tree.root.left.left = Node(4)
 tree.root.left.right = Node(5)
 tree.root.right.left = Node(6)
 tree.root.right.right = Node(7)
-tree.root.left.left.left = Node(8)
-tree.root.left.left.right = Node(9)
+tree.root.left.right.left = Node(8)
+tree.root.left.right.right = Node(9)
+
+
+print('BFS: ',tree.bfs())
+print('LevelORder: ',tree.levelOrder())
+print('Pre Rec: ',tree.preOrderRecursive())
+print('Pre It: ',tree.preOrderIterative())
+print('InOrder Rec:', tree.inOrderRecursive())
+print('InOrder It:', tree.inOrderIterative())
+print('PostOrder Rec:', tree.postOrderRecursive())
+print('PostOrder It:', tree.postOrderIterative())
+print('PostOrder It2:', tree.postOrderIterativeOneStack())
+print('ZigZag: ',tree.zigZag())
+print('Boundary Traverse: ',tree.boundaryTraversal())
+print('Vertical Traverse:', tree.verticalTraversal())
+# print(tree.dfsPre(tree.root))

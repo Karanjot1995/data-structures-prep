@@ -4,21 +4,24 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution:
-    def rightSideView(self, root):
+from Templates.tree import BinaryTree, Node
+
+class Tree(BinaryTree):
+    def rightSideView(self):
+      root = self.root
       order = []
-      def dfs(root, level):
-        if not root:
-          return
+      def traverse(root, level):
+        if not root: return
         if level == len(order):
           order.append(root.val)
-        if root.right: dfs(root.right,level+1)
-        if root.left: dfs(root.left,level+1)
-      dfs(root,0)
-    
+        if root.right: traverse(root.right,level+1)
+        if root.left: traverse(root.left,level+1)
+        
+      traverse(root,0)
       return order
     
-    def rightSideViewLevelOrder(self, root):
+    def rightSideViewLevelOrder(self):
+      root = self.root
       order = []
       q = [root]
 
@@ -34,3 +37,24 @@ class Solution:
       
       return order
 
+
+#             1
+#           /    \
+#         2        3
+#       /   \     /  \
+#      4     5   6    7
+#    /  \
+#   8     9
+
+tree = Tree(1)
+tree.root.left = Node(2)
+tree.root.right = Node(3)
+tree.root.left.left = Node(4)
+tree.root.left.right = Node(5)
+tree.root.right.left = Node(6)
+tree.root.right.right = Node(7)
+tree.root.left.left.left = Node(8)
+tree.root.left.left.right = Node(9)
+
+print(tree.rightSideView())
+print(tree.rightSideViewLevelOrder())

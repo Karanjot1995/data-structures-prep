@@ -13,7 +13,6 @@ class Solution:
         if popped.left: q.append(popped.left)
         if popped.right: q.append(popped.right)
       order.append(lvl)
-      level+=1
     return order[-1][0]    
   
 
