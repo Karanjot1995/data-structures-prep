@@ -25,48 +25,6 @@ class BinaryTree:
     traverse(root)
     return res
   
-  #reduce the curr val as much as possible so move left
-  def ceil(self,key):
-    root = self.root
-    ceil = -1
-    while root:
-      if root.val == key:
-        ceil = root.val
-        return ceil
-      if key<root.val:
-        ceil = root.val
-        root = root.left
-      else: root = root.right
-    return ceil
-  
-  #increase the curr val as much as possible so move right
-  def floor(self,key):
-    root = self.root
-    floor = -1
-    while root:
-      if root.val == key:
-        floor = root.val
-        return floor
-      if key>root.val:
-        floor = root.val
-        root = root.right
-      else:
-        root = root.left
-    return floor
-  
-  def closestValue(self,val):
-    root = self.root
-    diff = float('inf')
-    closest = -1
-    while root:
-      if root.val == val:
-        return root.val
-      if abs(root.val-val)<diff:
-        diff = abs(root.val-val)
-        closest = root.val
-      root = root.left if val<root.val else root.right
-    return closest
-  
   def insert(self, val):
     root = self.root
     newNode = TreeNode(val)
@@ -86,10 +44,6 @@ class BinaryTree:
           break
         curr = curr.right
     return root
-    
-
-        
-
 
 
 #             30
@@ -114,9 +68,6 @@ tree.root.left.right.right = TreeNode(25)
 
 
 print(tree.inOrder())
-print('Ceil: ',tree.ceil(32))
-print('Floor: ',tree.floor(32))
-print('Closest Val: ',tree.closestValue(32))
 print('Insert: ',tree.insert(6))
 
 
