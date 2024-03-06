@@ -54,54 +54,44 @@ class BinaryTree:
       return
     def traverse(curr):
       order.append(curr.val)
-      if curr.left:
-        traverse(curr.left)
-      if curr.right:
-        traverse(curr.right)
+      if curr.left: traverse(curr.left)
+      if curr.right: traverse(curr.right)
     traverse(current)
     return order
   
   def preOrderIterative(self):
     order = []
     root = self.root
-    if root == None:
-      return
-    
-    q = [root]
-    while q:
-      curr = q.pop()
+    if root == None: return
+    st = [root]
+    while st:
+      curr = st.pop()
       order.append(curr.val)
-      if curr.right: q.append(curr.right)
-      if curr.left: q.append(curr.left)
+      if curr.right: st.append(curr.right)
+      if curr.left: st.append(curr.left)
 
     return order
   
   def inOrderRecursive(self):
     order = []
-    current = self.root
-    if current == None:
-      return
+    curr = self.root
     def traverse(curr):
-      if curr.left:
-        traverse(curr.left)
+      if curr.left: traverse(curr.left)
       order.append(curr.val)
-      if curr.right:
-        traverse(curr.right)
-    traverse(current)
+      if curr.right: traverse(curr.right)
+    traverse(curr)
     return order
   
   def inOrderIterative(self):
     curr = self.root
     st = []
     order = []
-
     while True:
-      if curr != None:
+      if curr!=None:
         st.append(curr)
         curr = curr.left
       else:
-        if not st:
-          break
+        if not st: break
         node = st.pop()
         order.append(node.val)
         curr = node.right
@@ -114,10 +104,8 @@ class BinaryTree:
     if current == None:
       return
     def traverse(curr):
-      if curr.left:
-        traverse(curr.left)
-      if curr.right:
-        traverse(curr.right)
+      if curr.left: traverse(curr.left)
+      if curr.right: traverse(curr.right)
       order.append(curr.val)
     traverse(current)
     return order
@@ -133,7 +121,6 @@ class BinaryTree:
       order.append(curr.val)
       if curr.left: q.append(curr.left)
       if curr.right: q.append(curr.right)
-
     return order[::-1]
   
   def postOrderIterativeOneStack(self):
@@ -163,23 +150,21 @@ class BinaryTree:
   
 
   def zigZag(self):
+    if not root: return []
+    root = self.root
     order = []
-    current = self.root
-    q = [current]
+    q = [root]
     leftToright = True
     while q:
       n = len(q)
       level = [0]*n
       for i in range(n):
-        popped = q.pop(0)
-
-        if leftToright: level[i] = popped.val
-        else: level[n-1-i] = popped.val
-
-        if popped.left:
-          q.append(popped.left)
-        if popped.right:
-          q.append(popped.right)
+        node = q.pop(0)
+        if node==None: break
+        if leftToright: level[i] = node.val
+        else: level[n-1-i] = node.val
+        if node.left: q.append(node.left)
+        if node.right: q.append(node.right)
       leftToright = not leftToright
       order.append(level)
 

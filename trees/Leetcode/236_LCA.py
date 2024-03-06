@@ -7,7 +7,7 @@
 
 class Solution:
   def lowestCommonAncestor(self, root, p, q):
-    def traverse(root, arr, p,q):
+    def traverse(root, p,q):
       if not root or root==p or root == q: return root
       left = traverse(root.left, p, q)
       right = traverse(root.right, p, q)

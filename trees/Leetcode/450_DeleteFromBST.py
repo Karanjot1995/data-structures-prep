@@ -1,5 +1,6 @@
 # height in BST is generally log2(N)
-# TC -> O(logN)
+# TC -> O(H)
+#H-> height of tree
 
 
 from collections import deque
@@ -35,17 +36,19 @@ class BinaryTree:
     if not root.right: return root
     return self.findLastRight(root.right)
   
-  def helper(self,root):
-    if not root.left: return root.right
-    elif not root.right: return root.left
+  def helper(self,curr):
+    # curr is 10 which is to be deleted
+    if not curr.left: return curr.right
+    elif not curr.right: return curr.left
 
     #find the last right in the left subtree and 
     # attach the right subtree at he bottom of it
-    rightChild = root.right  #(20,15,25,21,26)
-    lastRight = self.findLastRight(root.left) #6
+    rightChild = curr.right  #(20,15,25,21,26)
+    lastRight = self.findLastRight(curr.left) #6
     lastRight.right = rightChild #6->20->...
-    return root.left #5->6->20...
+    return curr.left #5->6->20...
 
+  
   def delete(self, key):
     root = self.root
     if not root: return
