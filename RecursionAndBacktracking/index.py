@@ -58,8 +58,7 @@ print(fact(5))
 
 
 
-# Reverse Array
-
+# Reverse Array using pointers
 def revArr(arr):
   def rev(i,j):
     if i>=j: return
@@ -69,4 +68,47 @@ def revArr(arr):
   return arr
 
 arr = [1,2,3,4,5]
-print(revArr(arr))
+print('rev: ', revArr(arr))
+
+
+# Reverse Array without using pointers
+
+def revArrOnePointer(arr):
+  n = len(arr)
+  def rev(i):
+    if i>=n/2: return
+    arr[i], arr[n-i-1] = arr[n-i-1], arr[i]
+    rev(i+1)
+  rev(0)
+  return arr
+
+arr = [1,2,3,4,5]
+print('rev one pointer: ', revArrOnePointer(arr))
+
+
+
+def isPalindrome(s):
+  # def rec(i,j):
+  #   if i>=j: return True
+  #   if s[i]!=s[j]: return False
+  #   return rec(i+1,j-1)
+  # return rec(0,len(s)-1)
+  n = len(s)
+  def rec(i):
+    if i>=n/2: return True
+    if s[i]!=s[n-i-1]: return False
+    return rec(i+1)
+  return rec(0)
+
+print(isPalindrome("acacbcaca"))
+
+
+# TC -> O(2^n) : exponential
+def fibonacci(n):
+  if n <=1: return n
+  return fibonacci(n-1)+fibonacci(n-2)
+
+print(fibonacci(7))
+
+
+
