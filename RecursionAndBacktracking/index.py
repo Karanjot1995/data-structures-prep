@@ -1,3 +1,12 @@
+# when the problem statement will say count all ways, count/try all possible ways, count distinct ways,
+# what gives you the minimum or max output then we apply recursion
+# shortcut
+# try to represent the problem in terms of an index
+# do all possible stuffs on that index according to the problem statement
+# if the question says count all ways -> sum up all the stuffs
+# eg ->  ques says find min/max => take min/max of all stuffs
+
+
 def rec(i,n):
   if i > n : return
   print('Karan')

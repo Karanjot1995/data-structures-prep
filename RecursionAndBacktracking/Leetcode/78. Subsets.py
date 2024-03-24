@@ -37,18 +37,18 @@ def subsets(nums):
 
 def subsets(nums):
   ans = []
-  def rec(i,seq):
+  def backtrack(i,seq):
     if i>= len(nums):
       ans.append(seq[:])
       return
     seq.append(nums[i])
     # pick the element to the subsequence
-    rec(i+1, seq)
+    backtrack(i+1, seq)
     seq.pop()
     # do not pick the element to the subsequence
-    rec(i+1, seq)
+    backtrack(i+1, seq)
   
-  rec(0,[])
+  backtrack(0,[])
 
   return ans
 
