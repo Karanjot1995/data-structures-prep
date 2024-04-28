@@ -47,3 +47,28 @@ print(numEnclaves([[0,0,0,1],[0,1,1,0],[0,1,1,0],[0,0,0,1],[0,1,1,0]]))
 # 0 0 0 1
 # 0 1 1 0
 
+print('------------')
+
+def maxOnes(mat):
+  row = 0
+  maxi = 0
+  for r in range(len(mat)):
+    left = 0
+    right = len(mat[r])
+    cnt = 0
+    # mid = (left+right//2)
+    while left<=right:
+      mid = (left+right)//2
+      if mat[r][mid]==0: left = mid+1
+      else: right = mid-1
+    
+    cnt = len(mat[r]) - left
+    if cnt>=maxi:
+      maxi = cnt
+      row = r
+
+  return row
+
+mat = [[0,0,1,1,1,1],[0,0,0,1,1,1],[0,0,0,0,1,1]]
+print(maxOnes(mat))
+

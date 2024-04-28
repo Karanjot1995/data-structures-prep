@@ -1,3 +1,4 @@
+#memoization
 def climbStairs(n: int) -> int:
   dp = [-1]*(n+1)
   def climb(i):
@@ -14,7 +15,7 @@ def climbStairs(n: int) -> int:
 print("recursive: ", climbStairs(5))
 
 
-
+#memoization
 def climbStairs2(n: int) -> int:
   dp = [-1]*(n+1)
 

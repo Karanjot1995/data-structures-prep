@@ -32,7 +32,9 @@ def permute2(nums):
   n = len(nums)
 
   def backtrack(seq):
-    if len(seq)==n: ans.append(seq.copy())
+    if len(seq)==n: 
+      ans.append(seq.copy())
+      return
 
     for num in nums:
       if num in seq: continue

@@ -42,18 +42,20 @@ class BSTIterator:
 class Solution:
   def findTarget(self, root, k):
     if not root: return False
-    
+
     # for next
     l = BSTIterator(root,False)
     # for before
     r = BSTIterator(root,True)
 
-    def traverse(root):
-      if not root: return False
-      if root.val in diff: return True
-      diff[k-root.val] = True
-      return traverse(root.left) or traverse(root.right)
-    return traverse(root)
+    i = l.next()
+    j = r.next()  #r.before()
+
+    while i<j:
+      if i+j==k: return True
+      elif i+j>k: i = l.next()
+      else: j = r.next()
+    return False
   
 
   

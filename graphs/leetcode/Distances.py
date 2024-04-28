@@ -19,6 +19,7 @@ def distance(grid):
     
     for dr,dc in directions:
       r,c = row+dr, col+dc
+      print((r,c),d)
       if (r in range(rows) and c in range(cols) and grid[r][c]==0 and (r,c) not in visited):
         visited.add((r,c))
         q.append([r,c,d+1])

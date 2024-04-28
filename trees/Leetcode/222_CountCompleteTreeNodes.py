@@ -17,13 +17,14 @@ class Solution:
     return cnt[0]
 
   def countNodes(self, root):
-    if not root: return 0
-    lh = self.findLeftHeight(root)
-    rh = self.findRightHeight(root)
+   if not root: return 0
+   lh = self.findLeftHeight(root)
+   rh = self.findRightHeight(root)
 
-    if lh == rh: return 2**lh-1
+   if lh == rh: return 2**lh-1
 
-    return 1 + self.countNodes(root.left) +  self.countNodes(root.right)
+   return 1 + self.countNodes(root.left) + self.countNodes(root.right)
+
 
   def findLeftHeight(self, node):
     ht = 0
@@ -31,12 +32,13 @@ class Solution:
       ht+=1
       node = node.left
     return ht
-
+  
   def findRightHeight(self, node):
     ht = 0
     while node:
       ht+=1
       node = node.right
     return ht
+
 
         

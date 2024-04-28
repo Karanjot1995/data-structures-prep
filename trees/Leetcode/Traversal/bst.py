@@ -21,7 +21,7 @@ class BinaryTree:
     def traverse(root):
       if root.left: traverse(root.left)
       res.append(root.val)
-      if root.left: traverse(root.right)
+      if root.right: traverse(root.right)
     traverse(root)
     return res
   
@@ -54,17 +54,18 @@ class BinaryTree:
         root = root.left
     return floor
   
-  def closestValue(self,val):
+  def closestValue(self,target):
     root = self.root
     diff = float('inf')
     closest = -1
     while root:
-      if root.val == val:
+      if root.val == target:
         return root.val
-      if abs(root.val-val)<diff:
-        diff = abs(root.val-val)
+      if abs(root.val-target)<=diff:
+        diff = abs(root.val-target)
         closest = root.val
-      root = root.left if val<root.val else root.right
+      if target<root.val: root = root.left 
+      else: root = root.right
     return closest
   
   def insert(self, val):

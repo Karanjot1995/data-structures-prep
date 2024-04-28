@@ -15,21 +15,21 @@ class Tree(BinaryTree):
     traverse(current)
     return d[0]
   
-  def maxPathSum(self):
-    current = self.root
-    if not current: return 0
-    if not current.left and not current.right: return current.val
-    d = [float('-inf')]
-    def traverse(curr):
-      if not curr: return 0
-      left = traverse(curr.left)
-      right = traverse(curr.right)
-      if left<0: left = 0
-      if right<0: right = 0
-      d[0] = max(d[0], curr.val+left+right)
-      return curr.val+ max(left,right)
-    traverse(current)
-    return d[0]
+  # def maxPathSum(self):
+  #   current = self.root
+  #   if not current: return 0
+  #   if not current.left and not current.right: return current.val
+  #   d = [float('-inf')]
+  #   def traverse(curr):
+  #     if not curr: return 0
+  #     left = traverse(curr.left)
+  #     right = traverse(curr.right)
+  #     if left<0: left = 0
+  #     if right<0: right = 0
+  #     d[0] = max(d[0], curr.val+left+right)
+  #     return curr.val+ max(left,right)
+  #   traverse(current)
+  #   return d[0]
   
 #            -10
 #           /    \

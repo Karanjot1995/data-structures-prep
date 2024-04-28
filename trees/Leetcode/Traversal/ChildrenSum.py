@@ -14,6 +14,7 @@ class Solution:
 
     self.changeTree(root.left)
     self.changeTree(root.right)
+    
     tot = 0
     if root.left: tot += root.left.val
     if root.right:  tot+= root.right.val

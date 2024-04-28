@@ -10,8 +10,6 @@ class Tree(BinaryTree):
       right = traverse(curr.right)
       d[0] = max(d[0], left+right)
       return 1+max(left,right)
-
-    
     traverse(current)
     return d[0]
   

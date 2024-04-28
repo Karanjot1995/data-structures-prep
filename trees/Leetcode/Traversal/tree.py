@@ -150,6 +150,7 @@ class BinaryTree:
   
 
   def zigZag(self):
+    root = self.root
     if not root: return []
     root = self.root
     order = []

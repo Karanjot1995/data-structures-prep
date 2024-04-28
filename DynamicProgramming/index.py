@@ -61,7 +61,7 @@ print('solved by Tabulation: ',fibDP2(7))
 
 
 
-#Tabulation (Bottom Up)
+#Tabulation (Bottom Up) constant space
 def fibDP3(n):
   prev2 = 0 
   prev = 1
