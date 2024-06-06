@@ -7,6 +7,14 @@ Approach: Recursive
 
 # TC - O(2^(m + n)) -> exponential
 # SC - O(m + n)
+We use an extra matrix dpdpdp of the same size as the original matrix. 
+In this matrix, dp(i,j)dp(i, j)dp(i,j) represents the minimum sum of the path from the index (i,j)(i, j)(i,j) to
+the bottom rightmost element. We start by initializing the bottom rightmost element
+of dpdpdp as the last element of the given matrix. Then for each element starting from
+the bottom right, we traverse backwards and fill in the matrix with the required
+minimum sums. Now, we need to note that at every element, we can move either
+rightwards or downwards. Therefore, for filling in the minimum sum, we use the
+equation:
 '''
 def optimal_path_recursive(grid):
     if not grid or len(grid) == 0 or len(grid[0]) == 0:
@@ -79,6 +87,7 @@ def solve(grid):
     
     R, C = len(grid), len(grid[0])
     dp = [[0 for _ in range(C)] for _ in range(R)]
+    print(dp)
     
     # solve from new york (top right)
     for r in range(0, R):
@@ -94,6 +103,7 @@ def solve(grid):
             else:
                 # rest of cells
                 dp[r][c] = max(dp[r][c + 1], dp[r - 1][c]) + grid[r][c]
+            print(dp)
     
     return dp[R - 1][0]
 

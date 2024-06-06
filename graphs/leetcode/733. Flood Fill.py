@@ -13,7 +13,7 @@ def floodFill(image, sr: int, sc: int, color: int):
 
         for dr,dc in directions:
             r,c = row+dr, col+dc
-            if ( r in range(rows) and c in range(cols) and image[r][c] == image[sr][sc] and (r,c) not in visited):
+            if ( 0<=r<rows and 0<=c<cols and image[r][c] == image[sr][sc] and (r,c) not in visited):
                 q.append([r,c])
                 visited.add((r,c))
                 image[r][c] = color
@@ -22,18 +22,21 @@ def floodFill(image, sr: int, sc: int, color: int):
     return image
 
 def floodFillDFS(image, sr , sc , color):
-    curr = image[sr][sc]
+    if not image: return 0
+    if image[sr][sc] == color: return image
+
+    initial = image[sr][sc]
     rows, cols = len(image), len(image[0])
-    def dfs(row, col):
+
+    def dfs(row,col):
+        image[row][col]=color
         directions = [[1,0], [-1,0], [0,1], [0,-1]]
-        for dr,dc in directions: 
-          r,c = row+dr, col+dc
-          if r in range(rows) and c in range(cols) and image[r][c] == curr and image[r][c] != color:
-              image[r][c] = color
-              dfs(r, c)
-              
-    dfs(sr, sc)
-    image[sr][sc] = color
+        for dr, dc in directions:
+            r,c = row+dr,col+dc
+            if 0<=r<rows and 0<=c<cols and image[r][c]==initial:
+                dfs(r,c)
+
+    dfs(sr,sc)
     return image
 
 

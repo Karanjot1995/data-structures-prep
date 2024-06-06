@@ -1,5 +1,6 @@
 from Templates.DisjointSet import DisjointSet
 
+
 def numProvincesDisjoint(mat):
   V = len(mat)
   ds = DisjointSet(V)
@@ -15,25 +16,25 @@ def numProvincesDisjoint(mat):
     #if it is the parent of itself then its the ultimate parent/boss of the component
     # so increase the count by 1
     if ds.parent[i] == i: cnt+=1
-
   return cnt
 
 
 def findCircleNumBFS(mat):
-  def bfs(i,adj,visited):
-      queue = []
-      queue.append(i)
-      visited[i] = True
-      
-      while queue:
-          i = queue.pop(0)
-          for j in range(n):
-              if adj[i][j] == 1 and not visited[j]:
-                  visited[j] = True
-                  queue.append(j)
+  def bfs(idx,adj,visited):
+    queue = []
+    queue.append(idx)
+    visited[idx] = True
+    
+    while queue:
+      i = queue.pop(0)
+      for j in range(n):
+        if adj[i][j] == 1 and not visited[j]:
+          visited[j] = True
+          queue.append(j)
   n = len(mat)
   provinces = 0
   visited = [False]*n
+
   for i in range(n):
       if not visited[i]:
           provinces += 1

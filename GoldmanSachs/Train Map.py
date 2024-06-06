@@ -113,14 +113,15 @@ class TrainMap:
         # path = [to_station, cur]
         cur = to_station
         path = []
-        print(cur)
-        print(parent_map[cur])
+        # print(cur.getName())
         while cur != from_station:
             path.append(cur)
+            # print(cur.getName())
             cur = parent_map[cur]
         
         path.append(from_station)
         path.reverse()
+        # print(path)
 
         return path
 

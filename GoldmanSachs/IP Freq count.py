@@ -10,6 +10,8 @@ def IPfreqCount(addresses):
     hmap[addr] = hmap.get(addr, 0)+1
     maxi = max(maxi, hmap[addr])
 
+  print(hmap)
+
   maxIp = [ip for ip, count in hmap.items() if count == maxi]
 
   if len(maxIp) > 1:
