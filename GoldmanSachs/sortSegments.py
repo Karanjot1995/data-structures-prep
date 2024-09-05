@@ -63,6 +63,7 @@ def sortSegments(segments):
 
       prev_segment = end_map.get(start)
       if prev_segment: ans.appendleft(prev_segment)
+      print(start,end, next_segment, prev_segment)
 
       start, end = ans[0][0], ans[-1][1]
       if not prev_segment and not next_segment:

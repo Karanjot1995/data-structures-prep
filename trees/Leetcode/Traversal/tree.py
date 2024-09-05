@@ -29,15 +29,12 @@ class BinaryTree:
     while q:
       level = []
       for i in range(len(q)):
-        popped = q.pop(0)
-        level.append(popped.val)
-        if popped.left:
-          q.append(popped.left)
-        if popped.right:
-          q.append(popped.right)
+        curr = q.pop(0)
+        level.append(curr.val)
+        if curr.left: q.append(curr.left)
+        if curr.right: q.append(curr.right)
       order.append(level)
     return order
-  
 
    
   
@@ -95,7 +92,13 @@ class BinaryTree:
         node = st.pop()
         order.append(node.val)
         curr = node.right
-    return order  
+    return order
+  
+  
+  
+  
+  
+  
 
   
   def postOrderRecursive(self):

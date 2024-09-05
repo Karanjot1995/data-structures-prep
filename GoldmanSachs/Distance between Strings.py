@@ -28,7 +28,6 @@ def shortestDistance(document, word1, word2):
     # todo: determine why tests are failing
     # words = re.split("[,. ]", document) # fix 2
     words = document.split()
-    print(words)
     index = 0
     shortest = len(document)
     word1Loc = 0
@@ -39,7 +38,7 @@ def shortestDistance(document, word1, word2):
             word1Loc = index + (len(word) / 2.0)
         elif word.lower() == word2.lower(): # fix 1
             word2Loc = index + (len(word) / 2.0)
-        # print(word1Loc,word2Loc)
+        print(word1Loc,word2Loc)
         
         if word1Loc > 0 and word2Loc > 0:
             current = math.fabs(word1Loc - word2Loc) # fix 4
@@ -47,6 +46,7 @@ def shortestDistance(document, word1, word2):
                 shortest = current
         
         index += len(word) + 1 # fix 3
+        print(index)
     
     # fix 5
     if word1Loc == 0 or word2Loc == 0:

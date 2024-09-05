@@ -30,16 +30,16 @@ class MyTrie:
     
     def get(self, prefix):
         if len(prefix) == 0:
-            ret = self.data
+            res = self.data
         else:
             c = prefix[0]
             if c in self.nodes:
-                ret = self.nodes[c].get(prefix[1:])
+                res = self.nodes[c].get(prefix[1:])
             else:
-                ret = []
-        return ret
+                res = []
+        return res
     
-    def print(self, level = 0):
+    def pprint(self, level = 0):
         print('-' * level + str(self.char), self.data)
         for c, node in self.nodes.items():
             node.pprint(level + 1)
@@ -118,18 +118,17 @@ class TrieNode:
     self.indexes = []
 
 class Trie:
-
   def __init__(self, doc):
     self.root= TrieNode("")
     self.store_document(doc)
 
-  def insert(self, word, index) -> None:
+  def insert(self, word, index):
     curr = self.root
     # print(word,index)
     for c in word:
       i = ord(c) - ord('a')
       curr.char = c
-      if curr.children[i]==None:
+      if i not in curr.children or not curr.children[i]:
         curr.children[i] = TrieNode('')
       curr.indexes.append(index)
       curr = curr.children[i]
@@ -153,7 +152,7 @@ class Trie:
     curr = self.root
     for c in prefix:
       i = ord(c) - ord('a')
-      if curr.children[i] == None:
+      if i not in curr.children or not curr.children[i]:
         return []
       curr = curr.children[i]
     return curr.indexes
@@ -161,7 +160,7 @@ class Trie:
 
 
 # Your Trie object will be instantiated and called as such:
-doc = "In publishing and graphic design, loren ipsum is a filler text commonly used to demonstrate the graphic elements of a document or visual presentation. Replacing meaningful content that could be distracting with placeholder text may allow viewers to focus on graphic aspects such as font, typography, and page layout. It also reduces the need for the designer to come up with meaningful text, as they con insteed use hastily generated lorem ipsum text. The lorem Ipsum text is typically a scrambled section of De finibus bonorum et malorum, a century BC Latin text by Cicero, with words altered, added, and renoved to make it nonsensical, improper Latin. A variation of the ordinary lorem ipsum text has been used in typesetting since the or earlier, when it was popularized by advertisements for Letraset transfer Sheets. It was introduced to the Information Age in the by Aldus Corporation, which employed it in graphics and word processing templates for its desktop publishing program, PegeMaker, for the Apple Macintosh. A common form of lorem ipsum reads: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do clusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ed minim venian, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute frure doloc in reprehenderit in voluptate velit esse cillun dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatet non proident, sunt in  culpa qui officia deserunt mollit anim id est laborum."
+doc = "In publishing and graphic design, loren ipsum is a filler text commonly used to demonstrate the graphic elements of a document or visual presentation. Replacing meaningful content that could be distracting with placeholder text may allow viewers to focus on graphic aspects such as font, typography, and page layout. It also reduces the need for the designer to come up with meaningful text, as they con insteed use hastily generated lorem ipsum text. The lorem Ipsum text is typically a scrambled section of De finibus bonorum et malorum, a 1st-century BC Latin text by Cicero, with words altered, added, and renoved to make it nonsensical, improper Latin. A variation of the ordinary lorem ipsum text has been used in typesetting since the 1960s or earlier, when it was popularized by advertisements for Letraset transfer Sheets. It was introduced to the Information Age in the mid-1980s by Aldus Corporation, which employed it in graphics and word processing templates for its desktop publishing program, PegeMaker, for the Apple Macintosh. A common form of lorem ipsum reads: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do clusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ed minim venian, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute frure doloc in reprehenderit in voluptate velit esse cillun dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatet non proident, sunt in  culpa qui officia deserunt mollit anim id est laborum."
 obj = Trie(doc)
 print('----------------------------------------')
 print(obj.startsWith("demonstrate")) # [80]

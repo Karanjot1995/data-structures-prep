@@ -1,4 +1,7 @@
 
+from queue import deque
+
+
 class Node:
    def __init__(self, val):
       self.left = None
@@ -12,23 +15,47 @@ class BinaryTree:
 
   def topView(self):
     root = self.root
-    dict = {}
-
-    def levelOrder(current, x):
-      q = [[current,0]]
-      while q:
-        curr,x = q.pop(0)
-        if x not in dict: dict[x] = curr.val
-        # dict[x].append([y,curr.val])
-        if curr.left: q.append([curr.left,x-1])
-        if curr.right: q.append([curr.right,x+1])
-
-    levelOrder(root,0)
-
+    d = {}
     res = []
-    for x in sorted(dict.keys()):
-      res.append(dict[x])
-    return res     
+
+    q = deque([[root,0]])
+
+    while q:
+      node,x = q.popleft()
+      if x not in d: d[x] = node.val
+      if node.left: q.append([node.left, x-1])
+      if node.right: q.append([node.right, x+1])
+
+    for x in sorted(d.keys()):
+      res.append(d[x])
+    return res
+
+
+
+
+
+
+
+
+
+
+
+
+    # def levelOrder(current, x):
+    #   q = [[current,0]]
+    #   while q:
+    #     curr,x = q.pop(0)
+    #     if x not in dict: dict[x] = curr.val
+    #     # dict[x].append([y,curr.val])
+    #     if curr.left: q.append([curr.left,x-1])
+    #     if curr.right: q.append([curr.right,x+1])
+
+    # levelOrder(root,0)
+
+    # res = []
+    # for x in sorted(dict.keys()):
+    #   res.append(dict[x])
+    # return res     
       
   
 #             1

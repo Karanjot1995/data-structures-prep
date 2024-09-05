@@ -28,10 +28,11 @@ from collections import defaultdict
 def get_tree_size(parent_child_map, root):
     ans = 0
     stack = [root]
-    
+    print(parent_child_map)
     while stack:
         ans += 1
         node = stack.pop()
+        print(node)
         
         if node in parent_child_map:
             for child in parent_child_map[node]:
@@ -64,6 +65,7 @@ def largestTree(immediateParent):
             roots.add(parent)
     
     # O(R) where R is the num of unique roots
+    print(roots)
     for root in roots:
         # O(k) where k is max number of nodes in any tree this can be all the nodes for skewed tree
         cur_tree_size = get_tree_size(parent_child_map, root)
