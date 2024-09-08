@@ -177,3 +177,91 @@ class Solution:
 # print("Count of numbers larger than the average of the last 3:", count)
 # print("Peak average dataset:", peak_dataset)
     
+
+from collections import defaultdict
+
+
+def solution(words):
+    slice_count = {}
+    count = 0
+
+    for i,word in enumerate(words):
+        if word in slice_count:
+            count+=slice_count[word]
+
+        for j in range(1,len(word)):
+            sliced_word = word[j:]
+            print(sliced_word, words[:i] + words[i + 1:], slice_count)
+            if sliced_word in (words[:i] + words[i + 1:]):
+                count += slice_count.get(sliced_word, 1)
+        slice_count[sliced_word] = slice_count.get(sliced_word, 0) + 1
+        
+    print(slice_count, count)
+
+
+        
+
+
+    # for word in words:
+    #     length = len(word)
+
+    #     # Check if this word is already the suffix of some previous words
+    #     if word in slice_count:
+    #         count += slice_count[word]
+
+    #     # Generate slices that include the end of the string
+    #     for i in range(1, length):
+    #         slice = word[i:]
+
+    #         # Count the occurrences of each slice
+    #         if slice in slice_count:
+    #             count += slice_count[slice]
+
+    #         # Update slice_count
+    #     slice_count[slice] = slice_count.get(slice, 0) + 1
+
+    return count
+
+
+# def solution(words):
+    
+#     suffix_map = defaultdict(int)
+#     word_map = defaultdict(int)
+#     count = 0
+
+#     for word in words:
+#         word_map[word] += 1
+#         for i in range(len(word) - 1, 0, -1):
+#             suffix = word[i:]
+#             suffix_map[suffix] += 1
+
+#     for word, _ in word_map.items():
+#         if word_map[word] > 1 and suffix_map[word] < 1:
+#             count += word_map[word] * (word_map[word] - 1) / 2
+#         elif word_map[word] >= 1 and suffix_map[word] >= 1:
+#             count += word_map[word] * (word_map[word] - 1) / 2
+#             count += word_map[word] * suffix_map[word]
+#     return count
+
+# def solution(strings):
+#     sorted = [s[::-1] for s in strings]
+#     sorted.sort()
+
+#     matchCounts = []
+#     prevstr = ''
+#     count = 0
+#     for s in sorted:
+#         for i in range(min(len(prevstr), len(s))):
+#             if s[i] != prevstr[i]:
+#                 del matchCounts[i:]
+#                 break
+#             count+=matchCounts[i]
+#         while len(matchCounts) < len(s):
+#             matchCounts.append(0)
+#         matchCounts[len(s)-1] += 1
+#         prevstr = s
+#     return count
+
+# words = ["back", "backdoor", "gammon", "backgammon", "comeback", "come", "door"]
+words = ["cba", "a", "a", "b", "ba"]
+print(solution(words))
