@@ -197,9 +197,6 @@ def solution(words):
         slice_count[sliced_word] = slice_count.get(sliced_word, 0) + 1
         
 
-        
-
-
     # for word in words:
     #     length = len(word)
 
