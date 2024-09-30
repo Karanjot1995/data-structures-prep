@@ -29,9 +29,9 @@ class Graph:
 
         for neighbor in self.adjacencyList[currentVertex]:
           if neighbor not in visited:
-            visited[neighbor] = True
+            # visited[neighbor] = True
             queue.append(neighbor)
-      print(self.adjacencyList)
+      # print(self.adjacencyList)
       return res
     
     def dfsGraph(self,start):
@@ -88,7 +88,7 @@ class Graph:
       return dfs(start,-1)
     
 
-    def checkBipartiteBFS(self,colors, start):
+    def checkBipartiteBFS(self, colors, start):
       q = []
       q.append(start)
       colors[start] = 0
