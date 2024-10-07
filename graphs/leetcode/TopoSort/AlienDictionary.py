@@ -10,7 +10,7 @@ def findOrder(alien_dict, N, K):
     for j in range(l):
       if s1[j]!=s2[j]:
         n1,n2 = ord(s1[j]) - 97,ord(s2[j]) - 97 
-        print(n1,n2)
+        # print(n1,n2)
         adj[n1].append(n2)
         # in_degree[n2]+=1
         break
