@@ -23,12 +23,8 @@ class Solution:
         ans = []
         
         def dfs(root, level):
-            if not root:
-                return
-            
-            if level == len(ans):
-                ans.append(root.val)
-            
+            if not root: return
+            if level == len(ans): ans.append(root.val)
             # change this for LEFT SIDE VIEW - dfs(left) call will come first
             dfs(root.right, level + 1)
             dfs(root.left, level + 1)
@@ -37,21 +33,14 @@ class Solution:
         # TC - O(N) | SC - O(N)
         def bfs():
             q = deque([root])
-
             while q:
-                level = []
-
+                node = None
                 for i in range(len(q)):
                     node = q.popleft()
-
-                    if node.left:
-                        q.append(node.left)
-                    
-                    if node.right:
-                        q.append(node.right)
-
-                    level.append(node.val)
-                ans.append(level[len(level) - 1])
+                    if node.left: q.append(node.left)
+                    if node.right: q.append(node.right)
+                ans.append(node.val)
+                # ans.append(level[len(level) - 1])
         bfs()
         # dfs(root, 0)
         return ans

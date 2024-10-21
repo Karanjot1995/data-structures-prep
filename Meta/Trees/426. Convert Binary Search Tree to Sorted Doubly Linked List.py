@@ -54,19 +54,13 @@ class Solution:
         tail = None
 
         def inorder(root):
-            nonlocal head, tail
-
-            if not root:
-                return
-            
+            if not root: return
+            nonlocal head, tail            
             inorder(root.left)
-
-            if not head:
-                head = root
+            if not head: head = root
             else:
                 root.left = tail
                 tail.right = root
-            
             tail = root
             inorder(root.right)
         
@@ -111,10 +105,6 @@ def treeToDoublyList(root):
         head = head.right
         return head
     return None
-
-
-
-
 
 
 

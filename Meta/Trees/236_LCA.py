@@ -14,6 +14,7 @@ TC - O(N)
 SC - O(N)
 '''
 
+
 class Solution:
   def lowestCommonAncestor(self, root, p, q):
     if not root or not q or not p: return None

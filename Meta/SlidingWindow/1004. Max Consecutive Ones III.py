@@ -23,8 +23,6 @@ class Solution:
       # window = max(window, right-left+1)
 
     return right-left+1
-      
-      
 
         
 

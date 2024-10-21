@@ -93,12 +93,6 @@ class BinaryTree:
         order.append(node.val)
         curr = node.right
     return order
-  
-  
-  
-  
-  
-  
 
   
   def postOrderRecursive(self):

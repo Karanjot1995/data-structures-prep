@@ -25,15 +25,16 @@ class Graph():
 
     pq = PriorityQueue()
     pq.put((0,start))
+    print(adj)
     # q = [[start,0]]
     while not pq.empty():
       # node = q.pop(0)
       node = pq.get()
       curr = node[1]
       curr_wt = node[0]
-      for neighbor in adj[curr]:
-        n = neighbor[0]
-        n_wt = neighbor[1]
+      for n,n_wt in adj[curr]:
+        # n = neighbor[0]
+        # n_wt = neighbor[1]
         if curr_wt + n_wt < dist[n]:
           dist[n]= curr_wt + n_wt
           # q.append([neighbor[0],dist[curr]+wt])

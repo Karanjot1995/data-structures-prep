@@ -1,3 +1,4 @@
+
 #memoization TC->O(nxm) , SC-> path length O((n-1)+(m-1)) + dp array O(nxm)
 def minPathSum(grid):
   m = len(grid)

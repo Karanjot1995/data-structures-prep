@@ -9,6 +9,7 @@ class Solution:
         st.pop()
       else: st.append(c)
     return ''.join(st)
+  
     # st = [s[0]]
     # for i in range(1,len(s)):
     #   if not st or s[i]!=st[-1]:

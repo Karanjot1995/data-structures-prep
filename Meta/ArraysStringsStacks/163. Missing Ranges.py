@@ -66,9 +66,6 @@ def missingRanges(input, low, high):
 	return res
 
 print(missingRanges([2, 3, 6, 11, 13, 18, 75], 0, 99))
-
-
-
         
 
 

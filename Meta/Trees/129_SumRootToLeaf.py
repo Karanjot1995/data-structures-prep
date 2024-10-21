@@ -91,6 +91,7 @@ class BinaryTree:
 #           /  \
 #          8     9
 
+
 tree = BinaryTree(1)
 tree.root.left = Node(2)
 tree.root.right = Node(3)

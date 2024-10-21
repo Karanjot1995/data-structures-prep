@@ -52,7 +52,6 @@ class Solution:
         return total
 
 
-
 class Solution:
   def rangeSumBST(self, root, low: int, high: int) -> int:
     self.sum = 0

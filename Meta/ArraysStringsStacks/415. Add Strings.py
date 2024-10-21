@@ -17,6 +17,7 @@ APPROACH: Math
 TC - O(max(n1, n2))
 SC - O(max(n1, n2)) as the length of the new string is at most max(n1, n2) + 1
 '''
+
 class Solution:
     def addStrings(self, num1: str, num2: str) -> str:
         n = max(len(num1), len(num2))

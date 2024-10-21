@@ -23,6 +23,7 @@ class Tree(BinaryTree):
     traverse(current)
     return d
   
+  
 #             1
 #           /    \
 #         2        3

@@ -34,8 +34,6 @@ class BinaryTree:
         root = root.right
 
 
-    
-
 tree = BinaryTree(8)
 tree.insert(3)
 tree.insert(10)

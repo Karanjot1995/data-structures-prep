@@ -84,7 +84,6 @@ class BSTIterator:
     node = self.order[self.i]
     self.i+=1
     return node
-      
 
   def hasNext(self) -> bool:
     return self.i<len(self.order)

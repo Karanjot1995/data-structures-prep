@@ -19,7 +19,6 @@ def findPeakElement(nums):
   #     return mid
   #   elif nums[mid-1]>nums[mid]: r = mid-1
   #   else: l=mid+1
-
   return l
 
 

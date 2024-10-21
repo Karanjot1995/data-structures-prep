@@ -59,15 +59,32 @@ class Solution:
   def closestValue(self, root, target):
     closest = root.val
     diff = float('inf')
+    def dfs(root):
+      if not root: return
+      nonlocal diff, closest
+      if abs(root.val - target) < diff: 
+        diff = abs(root.val-target)
+        closest = root.val
+      elif abs(root.val-target) == diff and root.val<closest:
+        closest = root.val
+      dfs(root.left) if target<root.val else dfs(root.right)
+    dfs(root)
+    return closest
+
     while root:
-      closest = min(root.val, closest, key = lambda x: (abs(target - x), x))
-      # if root.val == target: return root.val
-      # if abs(root.val-target)<diff:
-      #   diff = abs(root.val-target)
-      #   closest = root.val
-      # elif abs(root.val-target) == diff:
-      #   if root.val<closest: closest = root.val
+      closest = min(root.val, closest, key = lambda x: (abs(target-x),x))
       root = root.left if target < root.val else root.right
+    return closest
+
+    while root:
+      if root.val == target: return root.val
+      if abs(root.val-target)<diff:
+        diff = abs(root.val-target)
+        closest = root.val
+      elif abs(root.val-target) == diff:
+        if root.val<closest: closest = root.val
+      root = root.left if target < root.val else root.right
+
     return closest
 
 

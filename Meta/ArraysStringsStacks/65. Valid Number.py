@@ -24,31 +24,23 @@ class Solution:
     TC - O(N)
     SC - O(1)
     '''
-    def isNumber(s):
-        seen_digit = seen_exponent = seen_decimal = False
+    def isNumber(self, s: str) -> bool:
+        seenDigit = seenDecimal = seenExponent = False
 
-        for i, c in enumerate(s):
-            if c.isdigit():
-                seen_digit = True
-            elif c in ["+", "-"]:
-                if i > 0 and s[i - 1] not in ["e", "E"]:
-                    return False
-            elif c in ["e", "E"]:
-                if seen_exponent: return False
-
-                if not seen_digit: return False
-
-                seen_exponent = True
-                seen_digit = False # to check that there is a digit after "e"
-            elif c == ".":
-                if seen_decimal or seen_exponent:
-                    return False
-                seen_decimal = True
+        for i,c in enumerate(s):
+            if c.isdigit(): seenDigit = True
+            elif c in ['-','+']:
+                if i>0 and s[i-1] not in ['e','E']: return False
+            elif c in ['e', 'E']:
+                if seenExponent or not seenDigit: return False
+                seenExponent = True
+                seenDigit = False
+            elif c == '.':
+                if seenExponent or seenDecimal: return False
+                seenDecimal = True
             else:
-                # if we encounter an alphabet other than "e", "E"
                 return False
-        
-        return seen_digit
+        return seenDigit
 
 '''
 META ALTERNATIVE: There is no "e"

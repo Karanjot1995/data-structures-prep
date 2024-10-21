@@ -20,6 +20,8 @@ class Graph():
     dist = [float('inf')]*n
     dist[start]=0
 
+    print(adj)
+
     while q:
       curr = q.pop(0)
       for neighbor in adj[curr]:
@@ -27,11 +29,12 @@ class Graph():
           dist[neighbor] = dist[curr]+1
           q.append(neighbor)
 
-    ans = [-1]*n
-    for i in range(n):
-      if dist[i]!=float('inf'):
-        ans[i]=dist[i]
-    return ans      
+    # ans = [-1]*n
+    # for i in range(n):
+    #   if dist[i]!=float('inf'):
+    #     ans[i]=dist[i]
+    # return ans      
+    return [d if d != float("inf") else -1 for d in dist]
 
 
 g = Graph()

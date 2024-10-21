@@ -1,3 +1,4 @@
+from collections import defaultdict
 from queue import deque
 # Definition for a binary tree node.
 # class TreeNode:
@@ -23,6 +24,24 @@ class Solution:
     for x in sorted(dict.keys()):
       res.append(dict[x])
     return res
+
+
+  def verticalOrder(self, root):
+    if not root: return
+    dict = defaultdict(list)
+    res = []
+
+    q = deque([[root,0]])
+    min_x = max_x = 0
+    while q:
+      node,x = q.popleft()
+      dict[x].append(node.val)
+      min_x = min(min_x, x)
+      max_x = max(max_x, x)
+      if node.left: q.append([node.left,x-1])
+      if node.right: q.append([node.right,x+1])
+    return [dict[x] for x in range(min_x, max_x + 1)]
+  
 
     # def traverse(root,x,y):
     #   if not root: return

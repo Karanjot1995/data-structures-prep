@@ -23,7 +23,7 @@ class Solution:
             for j in range(len(w1)):
                 # reached the end of w2 first so w2 might be the prefix of w1
                 # w1 = hello, w2 = he
-                if j == len(w2):
+                if j >= len(w2):
                     return False
                 
                 if w1[j] != w2[j]:
@@ -31,3 +31,4 @@ class Solution:
                         return False
                     break
         return True
+    

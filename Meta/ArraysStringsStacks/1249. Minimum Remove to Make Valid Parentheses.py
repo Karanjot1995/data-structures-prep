@@ -16,6 +16,7 @@ class Solution:
     return s[::-1]
 
 
+
   #brute force using O(N) space of stack
   def minRemoveToMakeValid(self, s: str) -> str:
     s = list(s)

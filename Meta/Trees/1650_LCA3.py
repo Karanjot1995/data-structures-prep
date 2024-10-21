@@ -72,6 +72,7 @@ class Solution:
       return p
     
     
+    
 
     def lowestCommonAncestor2(self, p, q):
         def getDepth(root):

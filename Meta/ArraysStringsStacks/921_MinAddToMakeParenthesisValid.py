@@ -20,7 +20,6 @@ class Solution:
     '''
     def minAddToMakeValid1(self, s: str) -> int:
         stack = []
-
         for char in s:
             if char == "(":
                 stack.append(char)
