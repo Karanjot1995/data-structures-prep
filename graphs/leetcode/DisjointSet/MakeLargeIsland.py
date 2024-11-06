@@ -39,7 +39,7 @@ def largestIsland(grid):
           components.add(ds.findUParent(newNode))
 
       sizeTotal = 0
-      print(components)
+      print('components: ',components)
       for c in components:
         # get the size associated with the ultimate parent
         sizeTotal += ds.size[c]

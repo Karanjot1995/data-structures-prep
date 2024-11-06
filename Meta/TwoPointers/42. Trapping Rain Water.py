@@ -5,7 +5,6 @@ def RWH(arr):
   left_max = right_max = 0
   left,right = 0, len(arr)-1
   ans = 0
-
   while left<=right:
     if arr[left]<=arr[right]:
       if arr[left]>=left_max: left_max = arr[left]

@@ -1,4 +1,36 @@
 
+#recursive
+def ninjasTrainingRec(n,points) -> int:
+  m = 3
+  dp = [[-1 for j in range(4)] for i in range(n)]
+  def rec(day,last):
+    if day == 0:
+      maxi = 0
+      for i in range(3):
+        if i != last: maxi = max(maxi, points[0][i])
+      return maxi
+    
+    maxi = 0
+    for i in range(3):
+      if i != last:
+        pts = points[day][i] + rec(day-1,i)
+        maxi = max(maxi, pts)
+    return maxi
+  
+  return rec(n-1,m)
+
+points = [[1,2,5], 
+          [3,1,1],
+          [3,3,3], 
+          [0,3,6]]
+# points = [[10,30,20],[10,20,30],[10,30,20]]
+print("recursive: ",ninjasTrainingRec(4,points))
+
+
+
+
+
+
 #memoization from right to left
 def ninjasTraining(n,points) -> int:
   m = 3
@@ -6,13 +38,13 @@ def ninjasTraining(n,points) -> int:
 
   def rec(day,last):
     if dp[day][last] != -1: return dp[day][last]
-
     # Base case: When we reach day 0, return the maximum point for the last day.
     if day == 0:
         maxi = 0
         for i in range(3):
             if i != last: maxi = max(maxi, points[0][i])
         dp[day][last] = maxi
+        # print(dp, day, last)
         return dp[day][last]
 
     maxi = 0
@@ -26,11 +58,16 @@ def ninjasTraining(n,points) -> int:
     # Store the maximum points in the DP table and return it.
     dp[day][last] = maxi
     return dp[day][last]
+  
+  ans = rec(n-1,m)
+  # print("memo: ", dp)
+  return ans
 
-  return rec(n-1,m)
 
-
-points = [[1,2,5], [3 ,1 ,1] ,[3,3,3], [0,3,6] ]
+points = [[1,2,5], 
+          [3,1,1],
+          [3,3,3], 
+          [0,3,6]]
 # points = [[10,30,20],[10,20,30],[10,30,20]]
 print(ninjasTraining(4,points))
 
@@ -43,15 +80,16 @@ print(ninjasTraining(4,points))
 def ninjasTraining2(n,points) -> int:
   m = 3
 
-  dp = [[0 for j in range(4)] for i in range(n)]
+  dp = [[0 for j in range(m)] for i in range(n)]
 
   dp[0][0] = max(points[0][1], points[0][2])
   dp[0][1] = max(points[0][0], points[0][2])
   dp[0][2] = max(points[0][0], points[0][1])
-  dp[0][3] = max(points[0][0], max(points[0][1], points[0][2]))
+  # dp[0][3] = max(points[0][0], max(points[0][1], points[0][2]))
+  print(dp)
 
   for day in range(1,n):
-    for last in range(m+1):
+    for last in range(m):
       # dp[day][last] = 0
       maxi = 0
       for task in range(m):
@@ -60,10 +98,13 @@ def ninjasTraining2(n,points) -> int:
           maxi = max(maxi,pts)
       dp[day][last] = maxi
 
-  print(dp)
-  return dp[n-1][3]
+  print("tabulation: ", dp)
+  return dp[n-1][0]
 
 
-points = [[1,2,5], [3 ,1 ,1] ,[3,3,3], [0,3,6] ]
+points = [[1,2,5], 
+          [3,1,1],
+          [3,3,3], 
+          [0,3,6]]
 # points = [[10,30,20],[10,20,30],[10,30,20]]
 print(ninjasTraining2(4,points))

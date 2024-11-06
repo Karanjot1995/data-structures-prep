@@ -6,20 +6,21 @@ def minPathSum(grid):
   memo = [[-1 for _ in range(n+1)] for _ in range(m+1)]
   
   def rec(row,col):
-    if memo[row][col]!=-1: return memo[row][col]
+    if row>=m or col>=n: return float("inf")
     if row == m-1 and col == n-1: return grid[row][col]
-    if row >=m or col >=n: return float('inf')
-    
-    right = rec(row,col+1)
-    down = rec(row+1,col)
+    if memo[row][col]!= -1: return memo[row][col]
 
-    memo[row][col] = grid[row][col]+min(right,down)
-    return grid[row][col]+min(right,down)
+    right = rec(row, col+1)
+    down = rec(row+1, col)
+    memo[row][col] = grid[row][col] + min(right,down)
+    return memo[row][col]
   
   return rec(0,0)
 
 
-grid = [[1,3,1],[1,5,1],[4,2,1]]
+grid = [[1,3,1],
+        [1,5,1],
+        [4,2,1]]
 print(minPathSum(grid))
 # Output: 7
 # Explanation: Because the path 1 → 3 → 1 → 1 → 1 minimizes the sum.

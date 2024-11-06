@@ -2,12 +2,12 @@
 def frogJump(n, heights) -> int:
 
     # Write your code here.
-    dp = [-1]*(n+1)
+    dp = [-1]*(n)
     def jump(i):
         if i == 0: return 0
         if dp[i] != -1: return dp[i]
 
-        jump1 = jump(i-1)+abs(heights[i]-heights[i-1])
+        jump1 = jump(i-1) + abs(heights[i]-heights[i-1])
         jump2 = float('inf')
         if i>1:
             jump2 = jump(i-2)+abs(heights[i]-heights[i-2])
@@ -15,8 +15,22 @@ def frogJump(n, heights) -> int:
         dp[i] = min(jump1,jump2)
         
         return min(jump1,jump2)
+    ans = jump(n-1)
+    print(dp)
+    return ans
 
-    return jump(n-1)
+    # dp = [-1]*(n+1)
+    # def jump(i):
+    #     if i >= n-1: return 0
+    #     if dp[i] != -1: return dp[i]
+    #     jump1 = jump2 = float('inf')
+    #     if i<n-1: jump1 = jump(i+1) + abs(heights[i]-heights[i+1])
+    #     if i<n-2: jump2 = jump(i+2)+abs(heights[i]-heights[i+2])
+    #     dp[i] = min(jump1,jump2)
+        
+    #     return min(jump1,jump2)
+
+    # return jump(0)
 
 print(frogJump(4, [10,20,30,10]))
 

@@ -1,9 +1,35 @@
 #Memoization TC->O(nxn) , SC-> dp array O(nxn) + O(n)
 
+
+class Solution:
+  def minFallingPathSum(self, matrix: List[List[int]]) -> int:
+    n = len(matrix)
+    dp = [[float("inf") for _ in range(n)] for _ in range(n)]
+
+    def rec(row,col):
+      if row>=n or col<0 or col>=n: return float("inf")
+      if row == n-1: return matrix[row][col]
+      if dp[row][col]!=float("inf"): return dp[row][col]
+
+      down_left = matrix[row][col] + rec(row+1,col-1)
+      down = matrix[row][col] + rec(row+1,col)
+      down_right = matrix[row][col] + rec(row+1, col+1)
+
+      dp[row][col] = min(down_left, down, down_right)
+      return dp[row][col]
+
+    mini = float("inf")
+    for i in range(n):
+      curr = rec(0,i)
+      mini = min(mini, curr)
+    
+    return mini
+
+
+
 def minFallingPathSum(matrix):
   n = len(matrix)
   memo = [[-float('inf') for _ in range(n+1)] for _ in range(n+1)]
-
   def rec(row,col):
     if memo[row][col]!=-float('inf'): return memo[row][col]
     if row < 0 or col < 0 or col>=n: return float('inf')

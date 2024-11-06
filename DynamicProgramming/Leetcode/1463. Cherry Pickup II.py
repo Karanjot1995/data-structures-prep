@@ -19,7 +19,9 @@ def cherryPickup(grid) -> int:
     memo[r][c1][c2] = maxi
     return maxi
 
-  return rec(0,0,n-1)
+  ans = rec(0,0,n-1)
+  print(memo)
+  return ans
 
 grid = [[3,1,1],[2,5,1],[1,5,5],[2,1,1]]
 print(cherryPickup(grid))
